@@ -2,9 +2,13 @@
 
 First, create a .env.local file in project's root and add the following environment variables:
 
-CONTENTFUL_SPACE_ID=
-CONTENTFUL_ACCESS_TOKEN=
-CATALOG_URL=
+- `CONTENTFUL_SPACE_ID`
+  - Description: Contentful space id
+- `CONTENTFUL_ACCESS_TOKEN`
+  - Description: Contentful access token
+- `CATALOG_URL`
+  - Description: URL to the JSON menu catalog
+  
 
 To run the development server:
 
