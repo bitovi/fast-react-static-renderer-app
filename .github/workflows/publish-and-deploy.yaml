@@ -1,37 +1,35 @@
-# name: Publish and deploy
+name: Publish and deploy
 
-# on:
-#   push:
-#     branches: [main]
+on:
+  push:
+    branches: [devops]
 
-#   # allows this job to be triggered via api
-#   repository_dispatch:
-#     types: [publish-event]
+  # allows this job to be triggered via api
+  repository_dispatch:
+    types: [publish-event]
 
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
-# jobs:
-#   publish:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: checkout repo
-#         uses: actions/checkout@v2
-#       - name: Configure AWS Credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: us-west-2
-
-#       - name: Publish to s3
-#         env:
-#           PUBLISH_CONTENTS_S3_BUCKET: your-s3-bucket-name
-#           APP_SUBPATH: react
-#         run: |
-#           echo "running scripts/ci/publish.sh"
-#           ./scripts/ci/publish.sh
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+      - name: Publish to s3
+        env:
+          PUBLISH_CONTENTS_S3_BUCKET:  fast-react-static-renderer-artifacts
+          APP_SUBPATH: react
+        run: |
+          echo "running scripts/ci/publish.sh"
+          ./scripts/ci/publish.sh
 
 #   # https://github.com/bitovi/github-actions-bitops-ci-cd
 #   deploy-build-tools:
