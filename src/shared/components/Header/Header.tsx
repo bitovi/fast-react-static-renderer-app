@@ -1,33 +1,20 @@
 import ContentfulImage from "../ContentfulImage";
-import Link from "next/link";
-import { useState, useEffect, FC } from "react";
-import CartIcon from "../../assets/bag.svg";
+import { FC } from "react";
 import styles from "./Header.module.css";
 
 const Header: FC<{}> = () => {
-  function generateRandomInt() {
-    return Math.floor(Math.random() * 10);
-  }
-
-  const [cartCount, setCartCount] = useState(0);
-
-  useEffect(() => {
-    setCartCount(generateRandomInt());
-    const interval = setInterval(() => setCartCount(generateRandomInt()), 3000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
   return (
     <header className={styles.header}>
       <div className={styles.innerHeader}>
         <div className={styles.logo}>
-          <Link href="/" passHref>
+          <a
+            href="https://www.bitovi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <div>
               <ContentfulImage
-                src="https://2171535.fs1.hubspotusercontent-na1.net/hubfs/2171535/Bitovi_July_2016_Theme/Images/bitovi-logo-x2.png"
+                src="https://images.ctfassets.net/ikiiay722ls1/2qUe8cPwWADJinF1eIFDEC/c01bce237678e8fcdf82442bfd3c4371/bitovi-logo-x2.png"
                 alt="site-logo"
                 width={338}
                 height={129}
@@ -39,16 +26,7 @@ const Header: FC<{}> = () => {
                 progressiveLoad={false}
               />
             </div>
-          </Link>
-        </div>
-
-        <div className={styles.cart}>
-          <div className={styles.cartIcon}>
-            <img src={CartIcon.src} alt="cart" />
-            {cartCount > 0 && (
-              <span className={styles.cartCount}>{cartCount}</span>
-            )}
-          </div>
+          </a>
         </div>
       </div>
     </header>

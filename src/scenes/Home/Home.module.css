@@ -3,24 +3,11 @@
   margin: 0 auto;
 }
 
-.productColumn {
-  padding: 5% 1.56em;
+.pageColumn {
+  padding: 10% 1.56em;
 }
 
-.productColumn h1 {
-  font-size: var(--font-size-large);
-
-  color: #000000;
-  font-family: var(--font-title);
-  font-style: normal;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  margin-bottom: 15px;
-  line-height: 150%;
-}
-
-.productList {
+.pageList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 1.5em;

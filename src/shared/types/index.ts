@@ -1,2 +1,1 @@
-export * from "./Product";
-export * from "./ImageData";
+export * from "./Page";

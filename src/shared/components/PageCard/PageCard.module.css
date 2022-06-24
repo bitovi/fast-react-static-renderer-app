@@ -1,0 +1,43 @@
+.card {
+  margin-bottom: 5em;
+}
+
+.pageCard {
+  color: var(--color-text);
+  position: relative;
+  
+}
+
+.pageCard:hover {
+  opacity: 0.8;
+}
+
+.pageCard:hover .pageTitle {
+  text-decoration: underline;
+}
+
+.pageTitle {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+
+  font-size: var(--font-size-medium);
+  font-weight: normal;
+  color: #fff;
+
+  padding: 0.6em 0.8em;
+}
+
+
+.pageDescription {
+  font-size: var(--font-size-medium);
+
+  margin-top: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .card {
+    margin-top: 2em;
+  }
+}

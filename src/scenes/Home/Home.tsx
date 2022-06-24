@@ -1,10 +1,10 @@
 import Head from "next/head";
 import styles from "./Home.module.css";
-import ProductCard from "../../shared/components/ProductCard";
-import { Product } from "../../shared/types";
+import PageCard from "../../shared/components/PageCard";
+import { Page } from "../../shared/types";
 import { FC } from "react";
 
-const Home: FC<{ products: Product[] }> = ({ products }) => {
+const Home: FC<{ pages: Page[] }> = ({ pages }) => {
   return (
     <div>
       <Head>
@@ -12,11 +12,10 @@ const Home: FC<{ products: Product[] }> = ({ products }) => {
       </Head>
 
       <div className={styles.homeLayout}>
-        <div className={styles.productColumn}>
-          <h1>Featured</h1>
-          <div className={styles.productList}>
-            {products?.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+        <div className={styles.pageColumn}>
+          <div className={styles.pageList}>
+            {pages?.map((page) => (
+              <PageCard key={page.slug} page={page} />
             ))}
           </div>
         </div>

@@ -6,8 +6,6 @@ First, create a .env.local file in project's root and add the following environm
   - Description: Contentful space id
 - `CONTENTFUL_ACCESS_TOKEN`
   - Description: Contentful access token
-- `CATALOG_URL`
-  - Description: URL to the JSON menu catalog
   
 
 To run the development server:
@@ -20,32 +18,32 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## GraphQL to fetch Contentful data
+
 
 ## Parallelize build
 
-If your platform has thousands of products or more, it might be worth it to parallelize the build process to save time and resources.
-To do so, we divide the build into multiple batches of product pages. The process is documented in https://github.com/bitovi/fast-react-static-renderer.
+If your platform has thousands of pages or more, it might be worth it to parallelize the build process to save time and resources.
+To do so, we divide the build into multiple batches of pages. The process is documented in https://github.com/bitovi/fast-react-static-renderer.
 
-In this app, the parallelization is achieved in the `[product].tsx` file, with the `getStaticPaths` function.
+In this app, the parallelization is achieved in the `[page].tsx` file, with the `getStaticPaths` function.
 
 `getStaticPaths` is used to statically pre-render paths in a page with dynamic Routes. More info [Here](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths)
 
 
 ```javascript
 export const getStaticPaths = async () => {
-  const products_string = process.env["PRODUCT_DATA"];
-  var products: Product[] = [];
-  if (typeof products_string === "undefined") {
-    console.log(
-      "WARN: PRODUCT_DATA env var not provided, getting all products"
-    );
-    products = await getAllProducts();
+  const pages_string = process.env["PAGE_DATA"];
+  let pages: Page[] = [];
+  if (typeof pages_string === "undefined") {
+    console.log("WARN: PAGE_DATA env var not provided, getting all pages");
+    pages = await getAllPages();
   } else {
-    products = JSON.parse(products_string).products as Product[];
+    pages = JSON.parse(pages_string).pages as Page[];
   }
 
-  const paths = products.map((product) => {
-    return { params: { product: product.slug } };
+  const paths = pages.map((page) => {
+    return { params: { page: page.slug } };
   });
 
   return {
@@ -54,4 +52,4 @@ export const getStaticPaths = async () => {
   };
 };
 ```
-The PRODUCT_DATA environment variable injected by the build image determines which product pages will be included in a particular build. The different builds will then be combined and result in the statically rendered application.
+The PAGE_DATA environment variable injected by the build image determines which pages will be included in a particular build. The different builds will then be combined and result in the statically rendered application.
