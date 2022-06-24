@@ -2,6 +2,7 @@ name: Publish and deploy
 
 on:
   push:
+    # TODO: revert to main
     branches: [devops]
 
   # allows this job to be triggered via api
