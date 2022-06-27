@@ -13,7 +13,8 @@ export const getStaticPaths = async () => {
     console.log("WARN: PAGE_DATA env var not provided, getting all pages");
     pages = await getAllPages();
   } else {
-    pages = JSON.parse(pages_string).pages as Page[];
+    // pages = JSON.parse(pages_string).pages as Page[];
+    pages = JSON.parse(pages_string) as Page[];
   }
 
   const paths = pages.map((page) => {
