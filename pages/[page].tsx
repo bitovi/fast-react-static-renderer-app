@@ -16,9 +16,13 @@ export const getStaticPaths = async () => {
     pages = JSON.parse(pages_string).pages as Page[];
   }
 
-  const paths = pages.map((page) => {
-    return { params: { page: page.slug } };
-  });
+  // Only process if more than one page. This allows build manager mode to run with no pages.
+  let paths = []
+  if (pages.length > 0) {
+    paths = pages.map((page) => {
+      return { params: { page: page.slug } };
+    });
+  }
 
   return {
     paths,
