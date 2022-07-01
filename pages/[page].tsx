@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
 
   // Only process if more than one page. This allows build manager mode to run with no pages.
   let paths = []
-  if (pages.length > 0) {
+  if (typeof pages !== "undefined") {
     paths = pages.map((page) => {
       return { params: { page: page.slug } };
     });
