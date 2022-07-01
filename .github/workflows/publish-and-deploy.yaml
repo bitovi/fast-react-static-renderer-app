@@ -45,4 +45,4 @@ jobs:
           org: bitovi
           repo: fast-react-static-renderer-operations
           branch: main
-          workflow: deploy-build-dev.yaml
+          workflow: deploy-build-dev-trigger.yaml
