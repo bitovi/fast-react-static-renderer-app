@@ -1,9 +1,12 @@
+import type { FC } from "react";
+import type { Page } from "@shared/interfaces";
+
 import Head from "next/head";
 import Link from "next/link";
-import { FC } from "react";
-import styles from "./pageDetails.module.css";
+
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { Page } from "@shared/types";
+
+import styles from "./Content.module.css";
 
 const PageDetail: FC<{ page: Page }> = ({ page }) => {
   return (
@@ -23,7 +26,7 @@ const PageDetail: FC<{ page: Page }> = ({ page }) => {
 
         <h1 className={styles.pageTitle}>{page.title}</h1>
         <div className={styles.pageDescription}>
-          {page.description && documentToReactComponents(page.description.json)}
+          {documentToReactComponents(page.description.json)}
         </div>
       </div>
     </div>

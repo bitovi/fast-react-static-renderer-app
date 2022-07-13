@@ -1,5 +1,6 @@
-import React, { FC } from "react";
-import Header from "../Header";
+import type { FC } from "react";
+
+import Header from "./components/Header";
 
 const Layout: FC<{ children }> = ({ children }) => {
   return (

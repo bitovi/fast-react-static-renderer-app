@@ -1,0 +1,6 @@
+ignore-dirs:
+   - /.next
+ignores:
+  - "@types/*"
+  - "@shared/*"
+  - "@scenes/*"

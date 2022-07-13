@@ -1,12 +1,16 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-class MyDocument extends Document {
-  render() {
+class FRSRDocument extends Document {
+  render(): JSX.Element {
     return (
       <Html lang="en-US">
         <Head>
           <link rel="icon" href="/favicon.ico" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
 
           <link
             rel="preload"
@@ -18,7 +22,6 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Open+Sans+Condensed&display=swap"
             media="print"
-            onLoad="this.media='all'"
           />
 
           <noscript>
@@ -28,8 +31,9 @@ class MyDocument extends Document {
             />
           </noscript>
 
-          <meta name="description" content="React render farm" />
+          <meta name="description" content="Fast React Static Renderer" />
         </Head>
+
         <body>
           <Main />
           <NextScript />
@@ -39,4 +43,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;
+export default FRSRDocument;

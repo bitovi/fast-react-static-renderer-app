@@ -1,41 +1,7 @@
-import React, { FC } from "react";
+import type { FC } from "react";
+
 import "lazysizes";
-
-function contentfulLoader(
-  src: string,
-  quality: number,
-  width: number,
-  format: string
-): string {
-  const params = ["w=" + width];
-
-  if (quality) {
-    params.push("q=" + quality);
-  }
-
-  if (format) {
-    params.push("fm=" + format);
-  }
-
-  return `${src}?${params.join("&")}`;
-}
-
-const buildMediaQuery = (min: string, max: string): string => {
-  let mediaQuery = "";
-  if (min) {
-    mediaQuery += `(min-width: ${min})`;
-  }
-
-  if (min && max) {
-    mediaQuery += " and ";
-  }
-
-  if (max) {
-    mediaQuery += `(max-width: ${max})`;
-  }
-
-  return mediaQuery;
-};
+import { Fragment } from "react";
 
 export type ImageSource = {
   width: number;
@@ -55,25 +21,20 @@ const ContentfulImage: FC<{
   return (
     <picture>
       {sources?.map((source) => (
-        <React.Fragment key={source.width}>
+        <Fragment key={source.width}>
           <source
             type="image/webp"
             media={buildMediaQuery(source.breakpointMin, source.breakpointMax)}
             srcSet={
               progressiveLoad
-                ? contentfulLoader(src, 50, source.width / 10, "webp")
-                : contentfulLoader(
-                    src,
-                    source.quality | 75,
-                    source.width,
-                    "webp"
-                  )
+                ? buildContentfulSrc(src, "webp", source.width / 10, 50)
+                : buildContentfulSrc(src, "webp", source.width, source.quality)
             }
-            data-srcset={contentfulLoader(
+            data-srcset={buildContentfulSrc(
               src,
-              source.quality | 75,
+              "webp",
               source.width,
-              "webp"
+              source.quality,
             )}
           />
           <source
@@ -81,22 +42,17 @@ const ContentfulImage: FC<{
             media={buildMediaQuery(source.breakpointMin, source.breakpointMax)}
             srcSet={
               progressiveLoad
-                ? contentfulLoader(src, 50, source.width / 10, "png")
-                : contentfulLoader(
-                    src,
-                    source.quality | 75,
-                    source.width,
-                    "png"
-                  )
+                ? buildContentfulSrc(src, "png", source.width / 10, 50)
+                : buildContentfulSrc(src, "png", source.width, source.quality)
             }
-            data-srcset={contentfulLoader(
+            data-srcset={buildContentfulSrc(
               src,
-              source.quality | 75,
+              "png",
               source.width,
-              "png"
+              source.quality,
             )}
           />
-        </React.Fragment>
+        </Fragment>
       ))}
 
       <img
@@ -112,3 +68,31 @@ const ContentfulImage: FC<{
 };
 
 export default ContentfulImage;
+
+function buildContentfulSrc(
+  src: string,
+  format: string,
+  width: number,
+  quality: number = 75,
+): string {
+  const params = [
+    typeof format !== "undefined" && "fm=" + format,
+    typeof width !== "undefined" && "w=" + width,
+    typeof quality !== "undefined" && "q=" + quality,
+  ]
+    .filter(Boolean)
+    .join("&");
+
+  return `${src}?${params}`;
+}
+
+const buildMediaQuery = (min: string, max: string): string => {
+  const mediaQuery = [
+    typeof min !== "undefined" && `(min-width: ${min})`,
+    typeof max !== "undefined" && `(max-width: ${max})`,
+  ]
+    .filter(Boolean)
+    .join(" and ");
+
+  return mediaQuery;
+};
