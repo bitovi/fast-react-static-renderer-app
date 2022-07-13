@@ -1,3 +1,1 @@
-import ContentfulImage from "./ContentfulImage";
-
-export default ContentfulImage;
+export { default } from "./ContentfulImage";

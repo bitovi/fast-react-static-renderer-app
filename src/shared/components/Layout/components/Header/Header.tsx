@@ -1,8 +1,10 @@
-import ContentfulImage from "../ContentfulImage";
-import { FC } from "react";
+import type { FC } from "react";
+
+import ContentfulImage from "@shared/components/ContentfulImage";
+
 import styles from "./Header.module.css";
 
-const Header: FC<{}> = () => {
+const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.innerHeader}>
