@@ -1,22 +1,22 @@
-import type { FC } from "react";
+import type { FC } from "react"
 
-import "lazysizes";
-import { Fragment } from "react";
+import "lazysizes"
+import { Fragment } from "react"
 
 export type ImageSource = {
-  width: number;
-  quality?: number;
-  breakpointMax?: string;
-  breakpointMin?: string;
-};
+  width: number
+  quality?: number
+  breakpointMax?: string
+  breakpointMin?: string
+}
 
 const ContentfulImage: FC<{
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  sources: ImageSource[];
-  progressiveLoad: boolean;
+  src: string
+  alt: string
+  width: number
+  height: number
+  sources: ImageSource[]
+  progressiveLoad: boolean
 }> = ({ src, alt, width, height, sources, progressiveLoad }) => {
   return (
     <picture>
@@ -64,10 +64,10 @@ const ContentfulImage: FC<{
         className="lazyload"
       />
     </picture>
-  );
-};
+  )
+}
 
-export default ContentfulImage;
+export default ContentfulImage
 
 function buildContentfulSrc(
   src: string,
@@ -81,9 +81,9 @@ function buildContentfulSrc(
     typeof quality !== "undefined" && "q=" + quality,
   ]
     .filter(Boolean)
-    .join("&");
+    .join("&")
 
-  return `${src}?${params}`;
+  return `${src}?${params}`
 }
 
 const buildMediaQuery = (min: string, max: string): string => {
@@ -92,7 +92,7 @@ const buildMediaQuery = (min: string, max: string): string => {
     typeof max !== "undefined" && `(max-width: ${max})`,
   ]
     .filter(Boolean)
-    .join(" and ");
+    .join(" and ")
 
-  return mediaQuery;
-};
+  return mediaQuery
+}

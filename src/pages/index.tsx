@@ -1,27 +1,27 @@
-import type { FC } from "react";
-import type { GetStaticProps } from "next";
-import type { Page } from "@shared/interfaces";
+import type { FC } from "react"
+import type { GetStaticProps } from "next"
+import type { Page } from "@shared/interfaces"
 
-import { getAllPages } from "@shared/services/page";
+import { getAllPages } from "@shared/services/page"
 
-import Home from "@scenes/Home";
+import Home from "@scenes/Home"
 
 interface HomeProps {
-  pages: Page[];
+  pages: Page[]
 }
 
 const HomePage: FC<HomeProps> = ({ pages }) => {
-  return <Home pages={pages} />;
-};
+  return <Home pages={pages} />
+}
 
-export default HomePage;
+export default HomePage
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const pages = await getAllPages();
+  const pages = await getAllPages()
 
   return {
     props: {
       pages,
     },
-  };
-};
+  }
+}

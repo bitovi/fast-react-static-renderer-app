@@ -1,8 +1,8 @@
-import type { FC } from "react";
+import type { FC } from "react"
 
-import ContentfulImage from "@shared/components/ContentfulImage";
+import ContentfulImage from "@shared/components/ContentfulImage"
 
-import styles from "./Header.module.css";
+import styles from "./Header.module.css"
 
 const Header: FC = () => {
   return (
@@ -32,7 +32,7 @@ const Header: FC = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

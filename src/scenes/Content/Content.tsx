@@ -1,12 +1,12 @@
-import type { FC } from "react";
-import type { Page } from "@shared/interfaces";
+import type { FC } from "react"
+import type { Page } from "@shared/interfaces"
 
-import Head from "next/head";
-import Link from "next/link";
+import Head from "next/head"
+import Link from "next/link"
 
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-import styles from "./Content.module.css";
+import styles from "./Content.module.css"
 
 const PageDetail: FC<{ page: Page }> = ({ page }) => {
   return (
@@ -30,7 +30,7 @@ const PageDetail: FC<{ page: Page }> = ({ page }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PageDetail;
+export default PageDetail
