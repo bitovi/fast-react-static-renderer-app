@@ -1,11 +1,11 @@
-import type { FC } from "react";
-import type { Page } from "@shared/interfaces";
+import type { FC } from "react"
+import type { Page } from "@shared/interfaces"
 
-import Head from "next/head";
+import Head from "next/head"
 
-import PageCard from "./components/PageCard";
+import PageCard from "./components/PageCard"
 
-import styles from "./Home.module.css";
+import styles from "./Home.module.css"
 
 const Home: FC<{ pages: Page[] }> = ({ pages }) => {
   return (
@@ -24,7 +24,7 @@ const Home: FC<{ pages: Page[] }> = ({ pages }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

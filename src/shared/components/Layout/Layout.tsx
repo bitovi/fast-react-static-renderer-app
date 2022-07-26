@@ -1,6 +1,6 @@
-import type { FC } from "react";
+import type { FC } from "react"
 
-import Header from "./components/Header";
+import Header from "./components/Header"
 
 const Layout: FC<{ children }> = ({ children }) => {
   return (
@@ -8,7 +8,7 @@ const Layout: FC<{ children }> = ({ children }) => {
       <Header />
       <div>{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

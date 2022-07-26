@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main, NextScript } from "next/document"
 
 class FRSRDocument extends Document {
   render(): JSX.Element {
@@ -39,8 +39,8 @@ class FRSRDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default FRSRDocument;
+export default FRSRDocument

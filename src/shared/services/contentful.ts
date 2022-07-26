@@ -2,13 +2,13 @@ export async function fetchGraphQL<Response, Variables = never>(
   query: string,
   variables?: Variables,
 ): Promise<Response> {
-  const contentfulSpaceID = process.env.CONTENTFUL_SPACE_ID;
-  const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+  const contentfulSpaceID = process.env.CONTENTFUL_SPACE_ID
+  const contentfulAccessToken = process.env.CONTENTFUL_ACCESS_TOKEN
 
   if (!contentfulSpaceID || !contentfulAccessToken) {
     throw new Error(
       "Missing environment variable CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_TOKEN",
-    );
+    )
   }
 
   return fetch(
@@ -21,5 +21,5 @@ export async function fetchGraphQL<Response, Variables = never>(
       },
       body: JSON.stringify({ query, variables }),
     },
-  ).then((response) => response.json());
+  ).then((response) => response.json())
 }

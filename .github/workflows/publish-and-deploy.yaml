@@ -1,4 +1,4 @@
-name: Publish and deploy
+name: Publish and Deploy
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           echo "running scripts/ci/publish.sh"
           ./scripts/ci/publish.sh
 
-#   # https://github.com/bitovi/github-actions-bitops-ci-cd
+  # https://github.com/bitovi/github-actions-bitops-ci-cd
   deploy-build-tools:
     # only deploy if not pull request
     if: github.event_name != 'pull_request'
