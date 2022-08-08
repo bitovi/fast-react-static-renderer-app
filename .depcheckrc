@@ -1,6 +1,9 @@
 ignore-dirs:
-   - /.next
+  - /.next
 ignores:
   - "@types/*"
   - "@shared/*"
   - "@scenes/*"
+  - "cross-fetch"
+  - "dotenv"
+  - "ts-node"
