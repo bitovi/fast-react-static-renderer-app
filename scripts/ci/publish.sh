@@ -54,7 +54,7 @@ npm i
 
 echo "zip the the contents"
 CONTENTS_ZIP_FILE="contents.zip"
-zip --symlinks -r "$CONTENTS_ZIP_FILE" .
+zip -q --symlinks -r "$CONTENTS_ZIP_FILE" .
 
 
 S3_PATH_PREFIX="${APP_SUBPATH}/${APP_VERSION}"
