@@ -46,5 +46,20 @@ function extractPageEntries(fetchResponse): Page[] {
     )
   }
 
-  return fetchResponse?.data?.pageCollection?.items
+  const pages = fetchResponse?.data?.pageCollection?.items
+
+  const numberOfPages = Number(process.env.NUMBER_OF_PAGES) || 500
+
+  const extraPagesForBenchmarking = [...Array(numberOfPages).keys()].map(
+    (index) => {
+      const pageIndex = index % pages.length
+
+      return {
+        ...pages[pageIndex],
+        slug: `${pages[pageIndex].slug}-${index}`,
+      }
+    },
+  )
+
+  return extraPagesForBenchmarking
 }
