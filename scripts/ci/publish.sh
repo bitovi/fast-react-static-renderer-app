@@ -52,9 +52,10 @@ npm i
 # npm install -g node-prune
 # node-prune
 
-echo "zip the the contents"
+echo "zip the the contents..."
 CONTENTS_ZIP_FILE="contents.zip"
-zip -r "$CONTENTS_ZIP_FILE" .
+zip -q --symlinks -r "$CONTENTS_ZIP_FILE" .
+echo "zip the the contents...Done"
 
 
 S3_PATH_PREFIX="${APP_SUBPATH}/${APP_VERSION}"
