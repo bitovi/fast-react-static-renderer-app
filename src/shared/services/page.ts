@@ -61,7 +61,7 @@ function extractPageEntries(fetchResponse): Page[] {
 
       return {
         ...pages[pageIndex],
-        slug: `${pages[pageIndex].slug}-${index}`,
+        slug: `${pages[pageIndex].slug}-benchmark-${index}`,
       }
     },
   )

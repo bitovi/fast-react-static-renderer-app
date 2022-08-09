@@ -20,9 +20,7 @@ export const getStaticProps: GetStaticProps<
   ContentProps,
   { page: string }
 > = async ({ params }) => {
-  const page = process.env.NUMBER_OF_PAGES
-    ? await getPageBySlug(params.page.split("-")[0])
-    : await getPageBySlug(params.page)
+  const page = await getPageBySlug(params.page.split("-benchmark-")[0])
 
   if (!page) {
     return {
