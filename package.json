@@ -7,8 +7,7 @@
     "prettier": "prettier --check src",
     "depcheck": "depcheck .",
     "dev": "next dev",
-    "build": "next build && next export",
-    "fetch-catalog": "NODE_OPTIONS='-r dotenv/config -r cross-fetch/polyfill' ts-node ./scripts/catalog/fetch-contentful.ts"
+    "build": "next build && next export"
   },
   "eslintConfig": {
     "root": true,
