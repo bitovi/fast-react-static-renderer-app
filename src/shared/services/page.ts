@@ -46,5 +46,25 @@ function extractPageEntries(fetchResponse): Page[] {
     )
   }
 
-  return fetchResponse?.data?.pageCollection?.items
+  // ENV var for benchmarking. If its not provided, the normal app functionality will occur
+  if (!process.env.NUMBER_OF_PAGES) {
+    return fetchResponse?.data?.pageCollection?.items
+  }
+
+  // Build extra pages
+  const pages = fetchResponse?.data?.pageCollection?.items
+  const numberOfPages = Number(process.env.NUMBER_OF_PAGES)
+
+  const extraPagesForBenchmarking = [...Array(numberOfPages).keys()].map(
+    (index) => {
+      const pageIndex = index % pages.length
+
+      return {
+        ...pages[pageIndex],
+        slug: `${pages[pageIndex].slug}-benchmark-${index}`,
+      }
+    },
+  )
+
+  return extraPagesForBenchmarking
 }

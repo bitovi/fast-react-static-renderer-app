@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps<
   ContentProps,
   { page: string }
 > = async ({ params }) => {
-  const page = await getPageBySlug(params.page)
+  const page = await getPageBySlug(params.page.split("-benchmark-")[0])
 
   if (!page) {
     return {
