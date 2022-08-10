@@ -58,7 +58,7 @@ function extractPageEntries(fetchResponse): Page[] {
 
   // Build extra pages
   const pages = fetchResponse?.data?.pageCollection?.items
-  const numberOfPages = Number(process.env.NUMBER_OF_PAGES)
+  const numberOfPages = Number(process.env.NUMBER_OF_PAGES) - pages.length
 
   const extraPagesForBenchmarking = [...Array(numberOfPages).keys()].map(
     (index) => {
@@ -71,5 +71,5 @@ function extractPageEntries(fetchResponse): Page[] {
     },
   )
 
-  return extraPagesForBenchmarking
+  return [...pages, ...extraPagesForBenchmarking]
 }
