@@ -1,10 +1,13 @@
 import type { Page } from "@shared/interfaces"
 
 import { fetchGraphQL } from "./contentful"
+import { getAll, getBySlug } from "./fixtures"
 
 export async function getAllPages(): Promise<Page[]> {
-  const entries = await fetchGraphQL<Page[]>(
-    `query {
+  const entries = process.env["MOCK_CALL"]
+    ? getAll()
+    : await fetchGraphQL<Page[]>(
+        `query {
       pageCollection {
         items {
           title
@@ -15,14 +18,16 @@ export async function getAllPages(): Promise<Page[]> {
         }
       }
     }`,
-  )
+      )
 
   return extractPageEntries(entries)
 }
 
 export async function getPageBySlug(slug: string): Promise<Page> {
-  const data = await fetchGraphQL(
-    `query getPage($slug: String!) {
+  const data = process.env["MOCK_CALL"]
+    ? getBySlug(slug)
+    : await fetchGraphQL(
+        `query getPage($slug: String!) {
       pageCollection(where:{slug: $slug}, limit: 1) {
         items {
           title
@@ -33,13 +38,15 @@ export async function getPageBySlug(slug: string): Promise<Page> {
         }
       }
     }`,
-    { slug },
-  )
+        { slug },
+      )
 
   return extractPageEntries(data)?.[0]
 }
 
 function extractPageEntries(fetchResponse): Page[] {
+  // console.log(JSON.stringify(fetchResponse, null, 2))
+
   if (fetchResponse.errors) {
     throw new Error(
       fetchResponse.errors.map((error) => error.message).join("\n"),
