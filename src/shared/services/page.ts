@@ -45,8 +45,6 @@ export async function getPageBySlug(slug: string): Promise<Page> {
 }
 
 function extractPageEntries(fetchResponse): Page[] {
-  // console.log(JSON.stringify(fetchResponse, null, 2))
-
   if (fetchResponse.errors) {
     throw new Error(
       fetchResponse.errors.map((error) => error.message).join("\n"),

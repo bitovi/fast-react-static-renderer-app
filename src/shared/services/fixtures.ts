@@ -1,11 +1,3 @@
-const mockContentfulResponse = {
-  data: {
-    pageCollection: {
-      items: [],
-    },
-  },
-}
-
 const aboutPage = {
   title: "About",
   slug: "about",
@@ -130,25 +122,29 @@ const contactPage = {
 }
 
 type MockedPage = typeof aboutPage | typeof contactPage
+type BaseResponse<T> = {
+  data: {
+    pageCollection: {
+      items: T[]
+    }
+  }
+}
 
-const createResponse = (...pages: MockedPage[]) => {
+const createResponse = (...pages: MockedPage[]): BaseResponse<MockedPage> => {
   return {
     data: {
       pageCollection: {
         items: [...pages],
       },
     },
-    errors: null,
   }
 }
 
-export const getAll = (): typeof mockContentfulResponse => {
+export const getAll = (): ReturnType<typeof createResponse> => {
   return createResponse(aboutPage, contactPage)
 }
 
-export const getBySlug = (
-  slug: string,
-): typeof mockContentfulResponse.data.pageCollection.items[number] => {
+export const getBySlug = (slug: string): ReturnType<typeof createResponse> => {
   const page = slug === "about" ? aboutPage : contactPage
 
   return createResponse(page)
