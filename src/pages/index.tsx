@@ -7,21 +7,29 @@ import { getAllPages } from "@shared/services/page"
 import Home from "@scenes/Home"
 
 interface HomeProps {
+  showing: number
+  total: number
   pages: Page[]
 }
 
-const HomePage: FC<HomeProps> = ({ pages }) => {
-  return <Home pages={pages} />
+const HomePage: FC<HomeProps> = ({ pages, showing, total }) => {
+  return <Home pages={pages} showing={showing} total={total} />
 }
 
 export default HomePage
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const pages = await getAllPages()
+  const toShow = pages.slice(0, 12)
+
+  const showing = toShow.length
+  const total = pages.length
 
   return {
     props: {
-      pages,
+      showing,
+      total,
+      pages: toShow,
     },
   }
 }
