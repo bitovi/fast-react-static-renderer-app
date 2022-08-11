@@ -2,14 +2,20 @@ import type { FC } from "react"
 import type { GetStaticProps, GetStaticPaths } from "next"
 import type { Page } from "@shared/interfaces"
 
-import { getAllPages, getPageBySlug } from "@shared/services/page"
-
-import Content from "@scenes/Content"
-
 import fs from "fs"
+
+import { getAllPages, getPageBySlug } from "@shared/services/page"
+import Content from "@scenes/Content"
 
 interface ContentProps {
   page: Page
+}
+
+interface PageDatum {
+  slug: string
+}
+interface PageData {
+  pages: Array<PageDatum>
 }
 
 const ContentPage: FC<ContentProps> = ({ page }) => {
@@ -37,19 +43,6 @@ export const getStaticProps: GetStaticProps<
   }
 }
 
-const getPagesFromSource = async (): Promise<Page[]> => {
-  const filePath = process.env["PAGE_DATA_FILE"]
-  if (filePath) {
-    return JSON.parse(fs.readFileSync(filePath, "utf-8")).pages as Page[]
-  }
-
-  const pages_string = process.env["PAGE_DATA"]
-
-  return pages_string
-    ? (JSON.parse(pages_string).pages as Page[])
-    : await getAllPages()
-}
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getPagesFromSource()
 
@@ -61,4 +54,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths,
     fallback: "blocking",
   }
+}
+
+const getPagesFromSource = async (): Promise<PageDatum[]> => {
+  const filePath = process.env["PAGE_DATA_FILE"]
+  if (filePath) {
+    const parsedFile = JSON.parse(
+      fs.readFileSync(filePath, "utf-8"),
+    ) as PageData
+
+    return parsedFile.pages
+  }
+
+  return getAllPages()
 }
