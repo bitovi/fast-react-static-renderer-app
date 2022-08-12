@@ -4,42 +4,46 @@ import { fetchGraphQL } from "./contentful"
 import { getAll, getBySlug } from "./fixtures"
 
 export async function getAllPages(): Promise<Page[]> {
-  const entries = process.env["MOCK_CALL"]
-    ? getAll()
-    : await fetchGraphQL<Page[]>(
-        `query {
-      pageCollection {
-        items {
-          title
-          slug
-          description {
-            json
-          }
-        }
-      }
-    }`,
-      )
+  const entries = getAll()
+
+  // const entries = process.env["MOCK_CALL"]
+  //   ? getAll()
+  //   : await fetchGraphQL<Page[]>(
+  //       `query {
+  //     pageCollection {
+  //       items {
+  //         title
+  //         slug
+  //         description {
+  //           json
+  //         }
+  //       }
+  //     }
+  //   }`,
+  //     )
 
   return extractPageEntries(entries)
 }
 
 export async function getPageBySlug(slug: string): Promise<Page> {
-  const data = process.env["MOCK_CALL"]
-    ? getBySlug(slug)
-    : await fetchGraphQL(
-        `query getPage($slug: String!) {
-      pageCollection(where:{slug: $slug}, limit: 1) {
-        items {
-          title
-          slug
-          description {
-            json
-          }
-        }
-      }
-    }`,
-        { slug },
-      )
+  const data = getBySlug(slug)
+
+  // const data = process.env["MOCK_CALL"]
+  //   ? getBySlug(slug)
+  //   : await fetchGraphQL(
+  //       `query getPage($slug: String!) {
+  //     pageCollection(where:{slug: $slug}, limit: 1) {
+  //       items {
+  //         title
+  //         slug
+  //         description {
+  //           json
+  //         }
+  //       }
+  //     }
+  //   }`,
+  //       { slug },
+  //     )
 
   return extractPageEntries(data)?.[0]
 }
