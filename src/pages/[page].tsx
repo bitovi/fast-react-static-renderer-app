@@ -7,8 +7,6 @@ import fs from "fs"
 import { getAllPages, getPageBySlug } from "@shared/services/page"
 import Content from "@scenes/Content"
 
-import fs from "fs"
-
 interface ContentProps {
   page: Page
 }
