@@ -1,6 +1,6 @@
 import type { Page } from "@shared/interfaces"
 
-import { fetchGraphQL } from "./contentful"
+// import { fetchGraphQL } from "./contentful"
 import { getAll, getBySlug } from "./fixtures"
 
 export async function getAllPages(): Promise<Page[]> {
