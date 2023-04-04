@@ -1,6 +1,15 @@
 {
   "name": "fast-react-static-renderer-app",
+  "author": "Bitovi",
   "private": true,
+  "homepage": "https://www.fast-react-static-renderer.com",
+  "bugs": {
+    "url": "https://github.com/bitovi/fast-react-static-renderer-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitovi/fast-react-static-renderer-app.git"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "eslint": "eslint src",
