@@ -1,9 +1,73 @@
+
 .container {
-  width: min(1200px, 100%);
-  margin: 2vh auto;
-  padding: 0 1.56em;
+  display: flex;
+  flex-direction: column;
+  margin: 5rem auto;
+  text-align: center;
+  max-width: 80%;
 }
 
+.container h1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: var(--font-size-xlarge);
+  margin-top: 2rem;
+}
+
+.container .tag {
+  padding: 6px 15px;
+  background: #d03434;
+  border-radius: 9999px;
+  width: fit-content;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+  font-family: Gilroy-Medium;
+  font-size: 15px;
+  margin-top: 2rem;
+  align-self: center;
+
+}
+.container .content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 1rem;
+  align-items: center;
+}
+@media screen and (max-width: 1300px) {
+  .container .content{
+    flex-direction: column;
+  }
+}
+.container figure {
+  width: 400px;
+  height: 400px;
+  position: relative;   
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.container figure img {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;  
+}
+
+.container .description {
+  font-family: "Inter", sans-serif;
+  font-size: var(--font-size-medium);
+  line-height: 2rem;
+  margin: 1.5rem 0;
+  text-align: justify;
+  max-width: 500px;
+
+}
+.breadcrumbs {
+  align-self: flex-start;
+  margin-left: 2rem;
+}
 .breadcrumbs span {
   text-decoration: underline;
   text-transform: uppercase;
@@ -18,45 +82,4 @@
   text-decoration: none;
 }
 
-.pageDetails {
-  display: grid;
-  column-gap: 2rem;
-  row-gap: 1.2rem;
-  grid-auto-columns: 1fr;
-  grid-template-areas:
-    "five"
-    "one"
-    "two"
-    "three"
-    "four";
 
-  padding: 5% 0;
-  font-family: var(--font-text);
-}
-
-.pageTitle {
-  grid-area: one;
-
-  font-size: var(--font-size-xlarge);
-  font-family: var(--font-title);
-  text-transform: uppercase;
-}
-
-.pageDescription {
-  grid-area: two;
-
-  font-size: var(--font-size-medium);
-  font-family: "Open Sans";
-  font-weight: normal;
-}
-
-@media screen and (min-width: 700px) {
-  .pageDetails {
-    grid-template-areas:
-      "five one"
-      "five two"
-      "five three"
-      "five four"
-      "five .";
-  }
-}

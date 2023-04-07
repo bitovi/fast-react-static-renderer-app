@@ -6,28 +6,29 @@ import Head from "next/head"
 import PageCard from "./components/PageCard"
 
 import styles from "./Home.module.css"
+import FeaturedPageCard from "./components/FeaturedPageCard/FeaturedPageCard"
 
 const Home: FC<{ pages: Page[]; showing: number; total: number }> = ({
   pages,
   showing,
   total,
 }) => {
+  const featuredPage = pages.length > 0 ? pages[0] : null
+  const otherPages = pages.length > 1 ? pages.slice(1) : []
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
-        <title>React render farm</title>
+        <title>Bitovi Store Home Page</title>
       </Head>
-
-      <div className={styles.banner}>{`Showing ${showing} of ${total}`}</div>
-      <div className={styles.homeLayout}>
-        <div className={styles.pageColumn}>
-          <div className={styles.pageList}>
-            {pages.map((page) => (
-              <PageCard key={page.slug} page={page} />
-            ))}
-          </div>
-        </div>
+      <div className={styles.row}>
+        {featuredPage && (
+          <FeaturedPageCard key={featuredPage.slug} page={featuredPage} />
+        )}
+        {otherPages.map((page) => (
+          <PageCard key={page.slug} page={page} />
+        ))}
       </div>
+      <div className={styles.banner}>{`Showing ${showing} of ${total}`}</div>
     </div>
   )
 }

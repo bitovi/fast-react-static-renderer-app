@@ -1,24 +1,14 @@
-.homeLayout {
-  width: min(1200px, 100%);
-  margin: 0 auto;
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
 }
-
-.pageColumn {
-  padding: 10% 1.56em;
-}
-
-.pageList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 1.5em;
-  row-gap: 1.5em;
+.row {
+  margin: 0;
 }
 
 .banner {
-  height: 75px;
-  background: #fff6f6;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: var(--font-size-medium);
+  padding: 2rem;
+  text-align: center;
 }

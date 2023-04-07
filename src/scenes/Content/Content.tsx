@@ -11,6 +11,9 @@ import styles from "./Content.module.css"
 const PageDetail: FC<{ page: Page }> = ({ page }) => {
   return (
     <div className={styles.container}>
+      <Head>
+        <title>{page.title}</title>
+      </Head>
       <div className={styles.breadcrumbs}>
         <span>
           <Link href="/">Home</Link>
@@ -18,14 +21,13 @@ const PageDetail: FC<{ page: Page }> = ({ page }) => {
         <span>&gt;</span>
         <span>{page.title}</span>
       </div>
-
-      <div className={styles.pageDetails}>
-        <Head>
-          <title>{page.title}</title>
-        </Head>
-
-        <h1 className={styles.pageTitle}>{page.title}</h1>
-        <div className={styles.pageDescription}>
+      <div className={styles.tag}>{page.tag}</div>
+      <h1>{page.title}</h1>
+      <div className={styles.content}>
+        <figure>
+          <img src={page.image.url} alt={page.image.title} />
+        </figure>
+        <div className={styles.description}>
           {documentToReactComponents(page.description.json)}
         </div>
       </div>
