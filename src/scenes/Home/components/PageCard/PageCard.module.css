@@ -1,8 +1,5 @@
 .cardArticle{
-  padding-left: 3rem;
-  padding-right: 3rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem;
   max-width: 27rem;
   float: left;
   transition: 1s;
@@ -25,6 +22,10 @@
   border-radius: 15px;
   background-repeat: no-repeat;
   transition: 1s;
+  border-radius: 15px
+
+}
+.cardContainer:hover .cardImage {
   border-radius: 15px 15px 0 0;
 
 }

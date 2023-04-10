@@ -30,9 +30,9 @@
 }
 .container .content{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
-  margin: 1rem;
+  margin: 2rem;
   align-items: center;
 }
 @media screen and (max-width: 1300px) {
@@ -40,19 +40,9 @@
     flex-direction: column;
   }
 }
-.container figure {
-  width: 400px;
-  height: 400px;
-  position: relative;   
-  overflow: hidden;
-  border-radius: 50%;
-}
 
-.container figure img {
-  display: inline;
-  margin: 0 auto;
-  height: 100%;
-  width: auto;  
+.container img {
+  object-fit: cover; 
 }
 
 .container .description {

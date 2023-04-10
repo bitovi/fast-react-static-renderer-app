@@ -16,7 +16,7 @@
     background-color: #fff;
   }
   
-  .featuredCardImage {
+  .featuredCardArticle:hover .featuredCardImage {
     border-radius: 15px 0 0 15px;
   }
   .featuredCardImage {
