@@ -8,15 +8,24 @@ import PageCard from "./components/PageCard"
 import styles from "./Home.module.css"
 import FeaturedPageCard from "./components/FeaturedPageCard/FeaturedPageCard"
 
+const NUM_OF_PAGES_TO_SHOW = 10
 const Home: FC<{ pages: Page[] }> = ({ pages }) => {
-  const [lastPageShown, setLastPageShown] = useState(10)
+  const [lastPageShown, setLastPageShown] = useState(
+    pages.length > NUM_OF_PAGES_TO_SHOW ? NUM_OF_PAGES_TO_SHOW : pages.length,
+  )
 
   const totalNumberOfPages = pages.length
   const featuredPage = pages.length > 0 ? pages[0] : null
   const otherPages = pages.length > 1 ? pages.slice(1, lastPageShown) : []
 
   const showMorePages = () => {
-    setLastPageShown((lastPageShown) => lastPageShown + 10)
+    const numOfRemainingPages = pages.length - lastPageShown
+    const numOfExtraPagesToShow =
+      numOfRemainingPages > NUM_OF_PAGES_TO_SHOW
+        ? NUM_OF_PAGES_TO_SHOW
+        : numOfRemainingPages
+    if (numOfExtraPagesToShow > 0)
+      setLastPageShown((lastPageShown) => lastPageShown + numOfExtraPagesToShow)
   }
 
   return (
