@@ -1,4 +1,3 @@
-
 .container {
   display: flex;
   flex-direction: column;
@@ -26,9 +25,8 @@
   font-size: 15px;
   margin-top: 2rem;
   align-self: center;
-
 }
-.container .content{
+.container .content {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -36,13 +34,13 @@
   align-items: center;
 }
 @media screen and (max-width: 1300px) {
-  .container .content{
+  .container .content {
     flex-direction: column;
   }
 }
 
 .container img {
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .container .description {
@@ -52,7 +50,6 @@
   margin: 1.5rem 0;
   text-align: justify;
   max-width: 500px;
-
 }
 .breadcrumbs {
   align-self: flex-start;
@@ -71,5 +68,3 @@
 .breadcrumbs span:nth-child(2) {
   text-decoration: none;
 }
-
-

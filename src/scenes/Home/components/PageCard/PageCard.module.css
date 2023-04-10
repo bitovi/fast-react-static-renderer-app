@@ -1,4 +1,4 @@
-.cardArticle{
+.cardArticle {
   padding: 0.5rem;
   max-width: 27rem;
   float: left;
@@ -22,17 +22,13 @@
   border-radius: 15px;
   background-repeat: no-repeat;
   transition: 1s;
-  border-radius: 15px
-
+  border-radius: 15px;
 }
 .cardContainer:hover .cardImage {
   border-radius: 15px 15px 0 0;
-
 }
 
-
-
-.cardMeta{
+.cardMeta {
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 12px;
@@ -47,7 +43,7 @@
   border-radius: 50px;
   text-align: center;
   font-family: Gilroy-Medium;
-  color: #fff ;
+  color: #fff;
   margin-bottom: 1rem;
 }
 .cardTitle {
@@ -70,13 +66,11 @@
   margin-bottom: 7px;
 }
 
-
 @media screen and (max-width: 500px) {
-  .cardArticle{
+  .cardArticle {
     width: 100%;
     max-width: 100%;
   }
-
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   .cardArticle {
