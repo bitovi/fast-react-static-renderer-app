@@ -8,7 +8,19 @@
 }
 
 .banner {
+  font-family: Gilroy-Medium;
   font-size: var(--font-size-medium);
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  background-color: #d03434;
+  color: #fff;
+  align-self: center;
+  border-radius: 10px;
+  width: 20%;
+  border: none;
+  margin-top: 3rem;
+}
+.banner:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }

@@ -1,4 +1,4 @@
-import type { FC } from "react"
+import { FC, useState } from "react"
 import type { Page } from "@shared/interfaces"
 
 import Head from "next/head"
@@ -8,13 +8,17 @@ import PageCard from "./components/PageCard"
 import styles from "./Home.module.css"
 import FeaturedPageCard from "./components/FeaturedPageCard/FeaturedPageCard"
 
-const Home: FC<{ pages: Page[]; showing: number; total: number }> = ({
-  pages,
-  showing,
-  total,
-}) => {
+const Home: FC<{ pages: Page[] }> = ({ pages }) => {
+  const [lastPageShown, setLastPageShown] = useState(10)
+
+  const totalNumberOfPages = pages.length
   const featuredPage = pages.length > 0 ? pages[0] : null
-  const otherPages = pages.length > 1 ? pages.slice(1) : []
+  const otherPages = pages.length > 1 ? pages.slice(1, lastPageShown) : []
+
+  const showMorePages = () => {
+    setLastPageShown((lastPageShown) => lastPageShown + 10)
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +32,10 @@ const Home: FC<{ pages: Page[]; showing: number; total: number }> = ({
           <PageCard key={page.slug} page={page} />
         ))}
       </div>
-      <div className={styles.banner}>{`Showing ${showing} of ${total}`}</div>
+      <button
+        className={styles.banner}
+        onClick={showMorePages}
+      >{`Showing ${lastPageShown} of ${totalNumberOfPages}`}</button>
     </div>
   )
 }
