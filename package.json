@@ -1,6 +1,15 @@
 {
   "name": "fast-react-static-renderer-app",
+  "author": "Bitovi",
   "private": true,
+  "homepage": "https://dev.fast-react-static-renderer.com",
+  "bugs": {
+    "url": "https://github.com/bitovi/fast-react-static-renderer-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitovi/fast-react-static-renderer-app.git"
+  },
   "scripts": {
     "prepare": "husky install",
     "typecheck": "tsc --noEmit",
