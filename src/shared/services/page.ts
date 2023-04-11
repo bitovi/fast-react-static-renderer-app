@@ -11,6 +11,11 @@ export async function getAllPages(): Promise<Page[]> {
       pageCollection {
         items {
           title
+          image {
+            title
+            url
+          }
+          tag
           slug
           description {
             json
@@ -31,6 +36,11 @@ export async function getPageBySlug(slug: string): Promise<Page> {
       pageCollection(where:{slug: $slug}, limit: 1) {
         items {
           title
+          image {
+            title
+            url
+          }
+          tag
           slug
           description {
             json

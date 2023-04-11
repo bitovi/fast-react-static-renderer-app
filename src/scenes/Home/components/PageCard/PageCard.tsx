@@ -6,29 +6,32 @@ import Link from "next/link"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import styles from "./PageCard.module.css"
+import { truncateString } from "@scenes/Home/utils"
 
 const PageCard: FC<{ page: Page }> = ({ page }) => {
   return (
-    <div className={styles.card}>
-      <div className={styles.pageCard}>
-        <Link href={`/${page.slug}`}>
-          <a>
-            <p className={styles.pageTitle}>{page.title}</p>
-          </a>
-        </Link>
-      </div>
-
-      <div className={styles.pageDescription}>
-        {documentToReactComponents(page.description.json, {
-          renderText: (text) => truncateString(text),
-        })}
-      </div>
-    </div>
+    <Link href={`/${page.slug}`}>
+      <article className={styles.cardArticle}>
+        <div className={styles.cardContainer}>
+          <div
+            className={styles.cardImage}
+            style={{
+              backgroundImage: `url(${page.image.url})`,
+            }}
+          ></div>
+          <div className={styles.cardMeta}>
+            <div className={styles.cardTag}>{page.tag}</div>
+            <div className={styles.cardTitle}>{page.title}</div>
+            <div className={styles.cardSub}>
+              {documentToReactComponents(page.description.json, {
+                renderText: (text) => truncateString(text),
+              })}
+            </div>
+          </div>
+        </div>
+      </article>
+    </Link>
   )
 }
 
 export default PageCard
-
-const truncateString = (text) => {
-  return text?.length > 100 ? `${text.substr(0, 100)}...` : text
-}

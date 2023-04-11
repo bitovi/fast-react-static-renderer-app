@@ -2,10 +2,12 @@
   "name": "fast-react-static-renderer-app",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "typecheck": "tsc --noEmit",
     "eslint": "eslint src",
     "prettier": "prettier --check src",
     "depcheck": "depcheck .",
+    "pre-commit": "npx lint-staged && npm run typecheck && npm run depcheck",
     "dev": "next dev",
     "build": "next build && next export"
   },
@@ -48,8 +50,16 @@
     "depcheck": "^1.4.3",
     "dotenv": "^16.0.1",
     "eslint": "^8.20.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.6.4"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ]
   }
 }

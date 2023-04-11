@@ -1,24 +1,26 @@
-.homeLayout {
-  width: min(1200px, 100%);
-  margin: 0 auto;
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 15rem;
 }
-
-.pageColumn {
-  padding: 10% 1.56em;
-}
-
-.pageList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 1.5em;
-  row-gap: 1.5em;
+.row {
+  margin: 0;
 }
 
 .banner {
-  height: 75px;
-  background: #fff6f6;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: Gilroy-Medium;
+  font-size: var(--font-size-medium);
+  padding: 1rem;
+  text-align: center;
+  background-color: #d03434;
+  color: #fff;
+  align-self: center;
+  border-radius: 10px;
+  width: 20%;
+  border: none;
+  margin-top: 3rem;
+}
+.banner:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
