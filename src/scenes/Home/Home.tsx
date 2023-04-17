@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import type { Page } from "@shared/interfaces"
 
 import Head from "next/head"
@@ -8,25 +8,13 @@ import PageCard from "./components/PageCard"
 import styles from "./Home.module.css"
 import FeaturedPageCard from "./components/FeaturedPageCard/FeaturedPageCard"
 
-const NUM_OF_PAGES_TO_SHOW = 10
-const Home: FC<{ pages: Page[] }> = ({ pages }) => {
-  const [lastPageShown, setLastPageShown] = useState(
-    pages.length > NUM_OF_PAGES_TO_SHOW ? NUM_OF_PAGES_TO_SHOW : pages.length,
-  )
-
-  const totalNumberOfPages = pages.length
+const Home: FC<{ pages: Page[]; showing: number; total: number }> = ({
+  pages,
+  showing,
+  total,
+}) => {
   const featuredPage = pages.length > 0 ? pages[0] : null
-  const otherPages = pages.length > 1 ? pages.slice(1, lastPageShown) : []
-
-  const showMorePages = () => {
-    const numOfRemainingPages = pages.length - lastPageShown
-    const numOfExtraPagesToShow =
-      numOfRemainingPages > NUM_OF_PAGES_TO_SHOW
-        ? NUM_OF_PAGES_TO_SHOW
-        : numOfRemainingPages
-    if (numOfExtraPagesToShow > 0)
-      setLastPageShown((lastPageShown) => lastPageShown + numOfExtraPagesToShow)
-  }
+  const otherPages = pages.length > 1 ? pages.slice(1, showing) : []
 
   return (
     <div className={styles.container}>
@@ -43,8 +31,7 @@ const Home: FC<{ pages: Page[] }> = ({ pages }) => {
       </div>
       <button
         className={styles.banner}
-        onClick={showMorePages}
-      >{`Showing ${lastPageShown} of ${totalNumberOfPages}`}</button>
+      >{`Showing ${showing} of ${total}`}</button>
     </div>
   )
 }
