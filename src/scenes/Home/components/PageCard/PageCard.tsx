@@ -1,31 +1,26 @@
 import type { FC } from "react"
-import type { Page } from "@shared/interfaces"
+import type { Content } from "@shared/interfaces"
 
 import Link from "next/link"
 
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import styles from "./PageCard.module.css"
-import { truncateString } from "@scenes/Home/utils"
 
-const PageCard: FC<{ page: Page }> = ({ page }) => {
+const PageCard: FC<{ content: Content }> = ({ content }) => {
   return (
-    <Link href={`/${page.slug}`}>
+    <Link href={`/${content.slug}`}>
       <article className={styles.cardArticle}>
         <div className={styles.cardContainer}>
-          <div
+          <img
             className={styles.cardImage}
-            style={{
-              backgroundImage: `url(${page.image.url})`,
-            }}
-          ></div>
+            src={content.image.url}
+            alt={content.image.title}
+          />
           <div className={styles.cardMeta}>
-            <div className={styles.cardTag}>{page.tag}</div>
-            <div className={styles.cardTitle}>{page.title}</div>
+            <div className={styles.cardTitle}>{content.name}</div>
             <div className={styles.cardSub}>
-              {documentToReactComponents(page.description.json, {
-                renderText: (text) => truncateString(text),
-              })}
+              {documentToReactComponents(content.description.json)}
             </div>
           </div>
         </div>

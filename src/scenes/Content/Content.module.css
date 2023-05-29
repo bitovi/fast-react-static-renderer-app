@@ -30,8 +30,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin: 4rem;
   align-items: center;
+  margin: 4rem;
 }
 @media screen and (max-width: 1300px) {
   .container .content {
@@ -41,6 +41,7 @@
 
 .container img {
   object-fit: cover;
+  width: 80%;
 }
 
 .container .description {

@@ -1,60 +1,55 @@
-import type { Page } from "@shared/interfaces"
+import type { Content } from "@shared/interfaces"
 
 import { fetchGraphQL } from "./contentful"
-import { getAll, getBySlug } from "./fixtures"
 
-export async function getAllPages(): Promise<Page[]> {
-  const entries = process.env["MOCK_CALL"]
-    ? getAll()
-    : await fetchGraphQL<Page[]>(
-        `query {
-      pageCollection {
+export async function getAllContents(): Promise<Content[]> {
+  const entries = await fetchGraphQL<Content[]>(
+    `query {
+      productCollection {
         items {
-          title
+          name
+          slug
+          price
           image {
             title
             url
           }
-          tag
-          slug
           description {
             json
           }
         }
       }
     }`,
-      )
+  )
 
-  return extractPageEntries(entries)
+  return extractContentEntries(entries)
 }
 
-export async function getPageBySlug(slug: string): Promise<Page> {
-  const data = process.env["MOCK_CALL"]
-    ? getBySlug(slug)
-    : await fetchGraphQL(
-        `query getPage($slug: String!) {
-      pageCollection(where:{slug: $slug}, limit: 1) {
+export async function getContentBySlug(slug: string): Promise<Content> {
+  const data = await fetchGraphQL(
+    `query getPage($slug: String!) {
+      productCollection(where:{slug: $slug}, limit: 1) {
         items {
-          title
+          name
+          slug
+          price
           image {
             title
             url
           }
-          tag
-          slug
           description {
             json
           }
         }
       }
     }`,
-        { slug },
-      )
+    { slug },
+  )
 
-  return extractPageEntries(data)?.[0]
+  return extractContentEntries(data)?.[0]
 }
 
-function extractPageEntries(fetchResponse): Page[] {
+function extractContentEntries(fetchResponse): Content[] {
   if (fetchResponse.errors) {
     throw new Error(
       fetchResponse.errors.map((error) => error.message).join("\n"),
@@ -63,7 +58,7 @@ function extractPageEntries(fetchResponse): Page[] {
 
   // ENV var for benchmarking. If its not provided, the normal app functionality will occur
   if (!process.env.NUMBER_OF_PAGES) {
-    return fetchResponse?.data?.pageCollection?.items
+    return fetchResponse?.data?.productCollection?.items
   }
 
   // Build extra pages

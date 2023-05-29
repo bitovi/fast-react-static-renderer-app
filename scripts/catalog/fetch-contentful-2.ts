@@ -1,14 +1,14 @@
-import { getAllPages } from "../../src/shared/services/page"
+import { getAllContents } from "../../src/shared/services/page"
 
 const fetchContentfulPages = async (): Promise<void> => {
-  const contentfulPages = await getAllPages()
+  const contentfulContents = await getAllContents()
 
   const buildData = {
-    count: contentfulPages.length,
+    count: contentfulContents.length,
     instances: [
       {
-        count: contentfulPages.length,
-        data: { pages: contentfulPages.map(({ slug }) => ({ slug })) },
+        count: contentfulContents.length,
+        data: { pages: contentfulContents.map(({ slug }) => ({ slug })) },
       },
     ],
   }

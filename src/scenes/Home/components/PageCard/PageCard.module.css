@@ -8,6 +8,10 @@
 .cardContainer {
   overflow: hidden;
   border-radius: 15px;
+  min-height: 528px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .cardContainer:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -15,17 +19,8 @@
   background-color: #fff;
 }
 .cardImage {
-  height: 14rem;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-  border-radius: 15px;
-  background-repeat: no-repeat;
   transition: 1s;
-  border-radius: 15px;
-}
-.cardContainer:hover .cardImage {
-  border-radius: 15px 15px 0 0;
 }
 
 .cardMeta {
@@ -34,18 +29,7 @@
   padding-left: 12px;
   padding-right: 12px;
 }
-.cardTag {
-  padding: 5px 11px;
-  font-size: 13px;
-  line-height: 1.5;
-  background: #d03434;
-  width: fit-content;
-  border-radius: 50px;
-  text-align: center;
-  font-family: Gilroy-Medium;
-  color: #fff;
-  margin-bottom: 1rem;
-}
+
 .cardTitle {
   font-size: 1.5rem;
   font-weight: 700;
@@ -64,6 +48,14 @@
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.125rem;
   margin-bottom: 7px;
+}
+
+.cardSub p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* start showing ellipsis when 3rd line is reached */
+  white-space: pre-wrap; /* let the text wrap preserving spaces */
 }
 
 @media screen and (max-width: 500px) {

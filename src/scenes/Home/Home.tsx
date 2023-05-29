@@ -1,32 +1,25 @@
 import { FC } from "react"
-import type { Page } from "@shared/interfaces"
+import type { Content } from "@shared/interfaces"
 
 import Head from "next/head"
 
 import PageCard from "./components/PageCard"
 
 import styles from "./Home.module.css"
-import FeaturedPageCard from "./components/FeaturedPageCard/FeaturedPageCard"
 
-const Home: FC<{ pages: Page[]; showing: number; total: number }> = ({
-  pages,
+const Home: FC<{ contents: Content[]; showing: number; total: number }> = ({
+  contents,
   showing,
   total,
 }) => {
-  const featuredPage = pages.length > 0 ? pages[0] : null
-  const otherPages = pages.length > 1 ? pages.slice(1, showing) : []
-
   return (
     <div className={styles.container}>
       <Head>
         <title>Bitovi Store Home Page</title>
       </Head>
       <div className={styles.row}>
-        {featuredPage && (
-          <FeaturedPageCard key={featuredPage.slug} page={featuredPage} />
-        )}
-        {otherPages.map((page) => (
-          <PageCard key={page.slug} page={page} />
+        {contents?.map((content) => (
+          <PageCard key={content.slug} content={content} />
         ))}
       </div>
       <button

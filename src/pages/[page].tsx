@@ -1,25 +1,25 @@
 import type { FC } from "react"
 import type { GetStaticProps, GetStaticPaths } from "next"
-import type { Page } from "@shared/interfaces"
+import type { Content as ContentType } from "@shared/interfaces"
 
 import fs from "fs"
 
-import { getAllPages, getPageBySlug } from "@shared/services/page"
+import { getAllContents, getContentBySlug } from "@shared/services/page"
 import Content from "@scenes/Content"
 
 interface ContentProps {
-  page: Page
+  content: ContentType
 }
 
-interface PageDatum {
+interface ContentDatum {
   slug: string
 }
-interface PageData {
-  pages: Array<PageDatum>
+interface ContentData {
+  pages: Array<ContentDatum>
 }
 
-const ContentPage: FC<ContentProps> = ({ page }) => {
-  return <Content page={page} />
+const ContentPage: FC<ContentProps> = ({ content }) => {
+  return <Content content={content} />
 }
 
 export default ContentPage
@@ -28,9 +28,9 @@ export const getStaticProps: GetStaticProps<
   ContentProps,
   { page: string }
 > = async ({ params }) => {
-  const page = await getPageBySlug(params.page.split("-benchmark-")[0])
+  const content = await getContentBySlug(params.page.split("-benchmark-")[0])
 
-  if (!page) {
+  if (!content) {
     return {
       notFound: true,
     }
@@ -38,15 +38,15 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      page,
+      content,
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pages = await getPagesFromSource()
+  const contents = await getContentsFromSource()
 
-  const paths = pages.map((page) => {
+  const paths = contents.map((page) => {
     return { params: { page: page.slug } }
   })
 
@@ -56,15 +56,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const getPagesFromSource = async (): Promise<PageDatum[]> => {
+const getContentsFromSource = async (): Promise<ContentDatum[]> => {
   const filePath = process.env["PAGE_DATA_FILE"]
   if (filePath) {
     const parsedFile = JSON.parse(
       fs.readFileSync(filePath, "utf-8"),
-    ) as PageData
+    ) as ContentData
 
     return parsedFile.pages
   }
 
-  return getAllPages()
+  return getAllContents()
 }
