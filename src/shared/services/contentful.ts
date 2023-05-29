@@ -11,7 +11,7 @@ export async function fetchGraphQL<Response, Variables = never>(
     )
   }
 
-  return fetch(
+  const contentfulResponse = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${contentfulSpaceID}`,
     {
       method: "POST",
@@ -21,5 +21,8 @@ export async function fetchGraphQL<Response, Variables = never>(
       },
       body: JSON.stringify({ query, variables }),
     },
-  ).then((response) => response.json())
+  )
+
+  const fetchedData = await contentfulResponse.json()
+  return fetchedData
 }

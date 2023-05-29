@@ -1,12 +1,12 @@
 import { Document } from "@contentful/rich-text-types"
 
-export interface Page {
-  title: string
+export interface Content {
+  name: string
   image: {
     title: string
     url: string
   }
-  tag: string
+  price: number
   slug: string
   description: {
     json: Document

@@ -1,10 +1,13 @@
 .container {
   display: flex;
   flex-direction: column;
-  padding: 15rem;
+  padding: 3rem;
 }
 .row {
+  display: flex;
+  flex-wrap: wrap;
   margin: 0;
+  justify-content: center;
 }
 
 .banner {

@@ -34,12 +34,12 @@ In this app, the parallelization is achieved in the `[page].tsx` file, with the 
 ```javascript
 export const getStaticPaths = async () => {
   const pages_string = process.env["PAGE_DATA"];
-  let pages: Page[] = [];
+  let pages: Content[] = [];
   if (typeof pages_string === "undefined") {
     console.log("WARN: PAGE_DATA env var not provided, getting all pages");
-    pages = await getAllPages();
+    pages = await getAllContents();
   } else {
-    pages = JSON.parse(pages_string).pages as Page[];
+    pages = JSON.parse(pages_string).pages as Content[];
   }
 
   const paths = pages.map((page) => {

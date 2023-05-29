@@ -1,5 +1,5 @@
 import type { FC } from "react"
-import type { Page } from "@shared/interfaces"
+import type { Content } from "@shared/interfaces"
 
 import Head from "next/head"
 import Link from "next/link"
@@ -8,31 +8,34 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import styles from "./Content.module.css"
 
-const PageDetail: FC<{ page: Page }> = ({ page }) => {
+const ContentDetail: FC<{ content: Content }> = ({ content }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{page.title}</title>
+        <title>{content.name}</title>
       </Head>
       <div className={styles.breadcrumbs}>
         <span>
           <Link href="/">Home</Link>
         </span>
         <span>&gt;</span>
-        <span>{page.title}</span>
+        <span>{content.name}</span>
       </div>
-      <div className={styles.tag}>{page.tag}</div>
-      <h1>{page.title}</h1>
+      <h1>{content.name}</h1>
       <div className={styles.content}>
-        <figure>
-          <img src={page.image.url} alt={page.image.title} />
-        </figure>
-        <div className={styles.description}>
-          {documentToReactComponents(page.description.json)}
+        <img src={content.image.url} alt={content.image.title} />
+        <div className={styles.info}>
+          <div className={styles.description}>
+            {documentToReactComponents(content.description.json)}
+          </div>
+          <div className={styles.price}>
+            <span>Price: </span>
+            <span>{`$${content.price / 100}`}</span>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-export default PageDetail
+export default ContentDetail

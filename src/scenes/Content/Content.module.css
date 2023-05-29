@@ -13,26 +13,23 @@
   margin-top: 2rem;
 }
 
-.container .tag {
-  padding: 6px 15px;
-  background: #d03434;
-  border-radius: 9999px;
-  width: fit-content;
-  color: #fff;
-  text-align: center;
-  line-height: 1.5;
-  font-family: Gilroy-Medium;
-  font-size: 15px;
-  margin-top: 2rem;
-  align-self: center;
-}
 .container .content {
   display: flex;
-  flex-direction: column;
   justify-content: space-evenly;
   margin: 4rem;
-  align-items: center;
 }
+
+.info {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.price {
+  font-weight: 600;
+}
+
 @media screen and (max-width: 1300px) {
   .container .content {
     flex-direction: column;
@@ -41,6 +38,7 @@
 
 .container img {
   object-fit: cover;
+  width: 80%;
 }
 
 .container .description {
