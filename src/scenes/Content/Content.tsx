@@ -24,8 +24,14 @@ const ContentDetail: FC<{ content: Content }> = ({ content }) => {
       <h1>{content.name}</h1>
       <div className={styles.content}>
         <img src={content.image.url} alt={content.image.title} />
-        <div className={styles.description}>
-          {documentToReactComponents(content.description.json)}
+        <div className={styles.info}>
+          <div className={styles.description}>
+            {documentToReactComponents(content.description.json)}
+          </div>
+          <div className={styles.price}>
+            <span>Price: </span>
+            <span>{`$${content.price / 100}`}</span>
+          </div>
         </div>
       </div>
     </div>

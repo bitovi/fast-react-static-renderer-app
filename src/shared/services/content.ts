@@ -2,8 +2,17 @@ import type { Content } from "@shared/interfaces"
 
 import { fetchGraphQL } from "./contentful"
 
+type FetchResponse<T> = {
+  errors?: Error[]
+  data: {
+    productCollection: {
+      items: T[]
+    }
+  }
+}
+
 export async function getAllContents(): Promise<Content[]> {
-  const entries = await fetchGraphQL<Content[]>(
+  const entries = await fetchGraphQL<FetchResponse<Content>>(
     `query {
       productCollection {
         items {
@@ -26,7 +35,7 @@ export async function getAllContents(): Promise<Content[]> {
 }
 
 export async function getContentBySlug(slug: string): Promise<Content> {
-  const data = await fetchGraphQL(
+  const data = await fetchGraphQL<FetchResponse<Content>, { slug: string }>(
     `query getPage($slug: String!) {
       productCollection(where:{slug: $slug}, limit: 1) {
         items {
@@ -49,10 +58,12 @@ export async function getContentBySlug(slug: string): Promise<Content> {
   return extractContentEntries(data)?.[0]
 }
 
-function extractContentEntries(fetchResponse): Content[] {
+function extractContentEntries(
+  fetchResponse: FetchResponse<Content>,
+): Content[] {
   if (fetchResponse.errors) {
     throw new Error(
-      fetchResponse.errors.map((error) => error.message).join("\n"),
+      fetchResponse.errors.map((error: Error) => error.message).join("\n"),
     )
   }
 
@@ -62,7 +73,7 @@ function extractContentEntries(fetchResponse): Content[] {
   }
 
   // Build extra pages
-  const pages = fetchResponse?.data?.pageCollection?.items
+  const pages = fetchResponse?.data?.productCollection?.items
   const numberOfPages = Number(process.env.NUMBER_OF_PAGES) - pages.length
 
   const extraPagesForBenchmarking = [...Array(numberOfPages).keys()].map(

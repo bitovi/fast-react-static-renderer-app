@@ -73,7 +73,7 @@ function buildContentfulSrc(
   src: string,
   format: string,
   width: number,
-  quality: number = 75,
+  quality = 75,
 ): string {
   const params = [
     typeof format !== "undefined" && "fm=" + format,
@@ -86,7 +86,10 @@ function buildContentfulSrc(
   return `${src}?${params}`
 }
 
-const buildMediaQuery = (min: string, max: string): string => {
+const buildMediaQuery = (
+  min: string | undefined,
+  max: string | undefined,
+): string => {
   const mediaQuery = [
     typeof min !== "undefined" && `(min-width: ${min})`,
     typeof max !== "undefined" && `(max-width: ${max})`,

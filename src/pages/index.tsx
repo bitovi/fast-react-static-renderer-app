@@ -2,7 +2,7 @@ import type { FC } from "react"
 import type { GetStaticProps } from "next"
 import type { Content } from "@shared/interfaces"
 
-import { getAllContents } from "@shared/services/page"
+import { getAllContents } from "@shared/services/content"
 
 import Home from "@scenes/Home"
 

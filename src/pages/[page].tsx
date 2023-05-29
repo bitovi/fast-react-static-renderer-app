@@ -4,7 +4,7 @@ import type { Content as ContentType } from "@shared/interfaces"
 
 import fs from "fs"
 
-import { getAllContents, getContentBySlug } from "@shared/services/page"
+import { getAllContents, getContentBySlug } from "@shared/services/content"
 import Content from "@scenes/Content"
 
 interface ContentProps {
