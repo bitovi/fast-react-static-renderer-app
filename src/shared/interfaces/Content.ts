@@ -5,6 +5,8 @@ export interface Content {
   image: {
     title: string
     url: string
+    width: number
+    height: number
   }
   price: number
   slug: string

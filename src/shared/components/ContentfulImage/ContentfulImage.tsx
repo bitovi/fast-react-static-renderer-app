@@ -57,10 +57,8 @@ const ContentfulImage: FC<{
 
       <img
         src={src}
-        width={width}
-        height={height}
-        style={{ width: "100%", height: "auto" }}
         alt={alt}
+        style={{ width: "100%", height: "auto" }}
         className="lazyload"
       />
     </picture>

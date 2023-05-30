@@ -36,8 +36,7 @@
   }
 }
 
-.container img {
-  object-fit: cover;
+.container .content img {
   width: 80%;
 }
 
