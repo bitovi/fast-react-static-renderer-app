@@ -22,6 +22,8 @@ export async function getAllContents(): Promise<Content[]> {
           image {
             title
             url
+            width
+            height
           }
           description {
             json
@@ -45,6 +47,8 @@ export async function getContentBySlug(slug: string): Promise<Content> {
           image {
             title
             url
+            width
+            height
           }
           description {
             json
